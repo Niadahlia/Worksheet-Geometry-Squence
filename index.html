@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ratio Detective — Interactive Student Worksheet (LKPD)</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f1f5f9;
+      color: #1e293b;
+    }
+
+    h1, h2, h3, .font-display {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Smooth transitions for interactive paper simulator */
+    .paper-cell {
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Input validation states */
+    .input-correct {
+      border-color: #10b981 !important;
+      background-color: #ecfdf5 !important;
+      color: #065f46 !important;
+    }
+
+    .input-incorrect {
+      border-color: #ef4444 !important;
+      background-color: #fef2f2 !important;
+      color: #991b1b !important;
+    }
+
+    /* Print-friendly styles */
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      .print-shadow-none {
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+      }
+
+      .print-break-inside {
+        break-inside: avoid;
+      }
+
+      input, select, textarea {
+        border: 1px solid #94a3b8 !important;
+        background-color: #ffffff !important;
+        color: #000000 !important;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-indigo-100 selection:text-indigo-900 pb-16">
+
+  <!-- Main Container -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 space-y-6">
+
+    <!-- 1. HEADER BANNER -->
+    <header class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950 to-blue-900 text-white p-6 sm:p-10 shadow-xl print-shadow-none print-break-inside">
+      <!-- Decorative Background Circles -->
+      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-indigo-500/20 blur-2xl pointer-events-none no-print"></div>
+      <div class="absolute -bottom-20 -left-12 w-56 h-56 rounded-full bg-cyan-400/10 blur-2xl pointer-events-none no-print"></div>
+
+      <div class="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div class="space-y-3">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/15 border border-amber-300/30 text-amber-300 text-xs font-bold tracking-wider uppercase">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+            <span>INTERACTIVE STUDENT WORKSHEET (LKPD)</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+            🕵️‍♂️ RATIO DETECTIVE
+          </h1>
+          <p class="text-indigo-100 text-base sm:text-lg font-medium max-w-2xl">
+            Uncovering the Secret of Constant Multipliers in Geometric Sequences
+          </p>
+        </div>
+
+        <div class="flex flex-wrap md:flex-col gap-2 text-xs sm:text-sm text-indigo-100 bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-4 shrink-0">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-book-open text-amber-300 w-4"></i>
+            <span><strong>Subject:</strong> Mathematics (Grade X)</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-layer-group text-cyan-300 w-4"></i>
+            <span><strong>Topic:</strong> Geometric Sequences</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="fa-regular fa-clock text-emerald-300 w-4"></i>
+            <span><strong>Duration:</strong> 45 Minutes</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. STUDENT GROUP IDENTITY SECTION -->
+    <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 print-shadow-none print-break-inside">
+      <div class="flex items-center gap-3 mb-5 border-b border-slate-100 pb-4">
+        <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-lg font-bold">
+          <i class="fa-solid fa-users"></i>
+        </div>
+        <div>
+          <h2 class="text-lg sm:text-xl font-bold text-slate-900">Student Group Identity</h2>
+          <p class="text-xs sm:text-sm text-slate-500">Complete your group details before starting the investigation</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
+        <div>
+          <label for="groupName" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Group Name</label>
+          <input type="text" id="groupName" placeholder="e.g., Pythagoras Team"
+            class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" />
+        </div>
+        <div>
+          <label for="classSemester" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">Class / Semester</label>
+          <input type="text" id="classSemester" placeholder="e.g., X TAB 1 / Odd"
+            class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" />
+        </div>
+        <div>
+          <label for="schoolName" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">School Name</label>
+          <input type="text" id="schoolName" placeholder="e.g., SMKN 1 Baros"
+            class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" />
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Group Members (4 Students)</label>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div class="relative">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-indigo-600">1.</span>
+            <input type="text" id="member1" placeholder="Member 1 Full Name"
+              class="w-full rounded-xl border border-slate-300 pl-8 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" />
+          </div>
+          <div class="relative">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-indigo-600">2.</span>
+            <input type="text" id="member2" placeholder="Member 2 Full Name"
+              class="w-full rounded-xl border border-slate-300 pl-8 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" />
+          </div>
+          <div class="relative">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-indigo-600">3.</span>
+            <input type="text" id="member3" placeholder="Member 3 Full Name"
+              class="w-full rounded-xl border border-slate-300 pl-8 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" />
+          </div>
+          <div class="relative">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-indigo-600">4.</span>
+            <input type="text" id="member4" placeholder="Member 4 Full Name"
+              class="w-full rounded-xl border border-slate-300 pl-8 pr-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. INSTRUCTIONS CARD -->
+    <section class="bg-amber-50/90 border border-amber-200 rounded-3xl p-6 sm:p-7 shadow-sm print-shadow-none print-break-inside">
+      <div class="flex items-start gap-3.5">
+        <div class="w-10 h-10 rounded-xl bg-amber-400 text-slate-900 flex items-center justify-center text-lg shrink-0 mt-0.5">
+          <i class="fa-solid fa-clipboard-list"></i>
+        </div>
+        <div class="space-y-2.5">
+          <h2 class="text-lg font-bold text-amber-950">Detective Instructions</h2>
+          <ol class="list-decimal list-inside space-y-1.5 text-sm sm:text-base text-amber-900 leading-relaxed">
+            <li>Simulate or follow the paper-folding instructions in <strong>Activity 1</strong>, then complete the observation table.</li>
+            <li>Calculate the ratio between consecutive terms in <strong>Activity 2</strong> to identify which are <strong>Geometric Sequences</strong> and <strong>Arithmetic Sequences</strong>.</li>
+            <li>Discuss with your group and answer the conclusion question in <strong>Activity 3</strong>.</li>
+            <li>Click <strong>"Check Answers / Group Evaluation"</strong> to see your score, then click <strong>"Save / Print PDF"</strong> to download your group's work.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. ACTIVITY 1: CONCRETE EXPLORATION - PAPER FOLDING SIMULATION -->
+    <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 space-y-6 print-shadow-none print-break-inside">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div class="flex items-center gap-3">
+          <span class="px-3 py-1 rounded-full bg-indigo-600 text-white text-xs font-extrabold tracking-wide uppercase">
+            Discovery Stage 1
+          </span>
+          <h2 class="text-lg sm:text-xl font-bold text-slate-900">
+            Activity 1: Concrete Exploration — Paper Folding Simulation
+          </h2>
+        </div>
+        <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-lg self-start sm:self-auto">
+          Max Score: 20 Points
+        </span>
+      </div>
+
+      <!-- Interactive Visual Paper Folding Simulator -->
+      <div class="rounded-2xl bg-slate-50 border border-slate-200 p-5 sm:p-6 space-y-5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
+              <i class="fa-solid fa-note-sticky text-indigo-600"></i>
+              <span>Interactive Visual Paper Folding Simulator</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-600 mt-0.5">
+              Click <strong>"+ Fold Paper"</strong> to fold a sheet of paper in half repeatedly and observe how the sections multiply!
+            </p>
+          </div>
+
+          <!-- Controls -->
+          <div class="flex items-center gap-2 sm:gap-3 bg-white p-2 rounded-2xl border border-slate-200 shadow-sm self-start md:self-auto no-print">
+            <button type="button" id="btnUnfold" onclick="changeFold(-1)"
+              class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-700 font-bold text-xs sm:text-sm transition disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5">
+              <i class="fa-solid fa-minus"></i>
+              <span>Unfold</span>
+            </button>
+
+            <div id="foldCounterBadge" class="px-4 py-1.5 rounded-xl bg-indigo-50 border border-indigo-200 text-indigo-800 font-extrabold text-xs sm:text-sm min-w-[105px] text-center">
+              0 Folds
+            </div>
+
+            <button type="button" id="btnFold" onclick="changeFold(1)"
+              class="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-bold text-xs sm:text-sm transition disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 shadow-sm">
+              <i class="fa-solid fa-plus"></i>
+              <span>Fold Paper</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Visual Paper Canvas / Grid Area -->
+        <div class="space-y-2.5">
+          <div class="flex items-center justify-between text-xs font-bold text-slate-600 px-1">
+            <span id="paperStateLabel" class="text-indigo-700 text-sm">1 Section (Whole Paper)</span>
+            <span id="paperTermLabel" class="bg-white px-2.5 py-1 rounded-md border border-slate-200">Term: U₁ = 1</span>
+          </div>
+
+          <div id="paperVisualGrid"
+            class="w-full h-52 sm:h-60 rounded-2xl border-2 border-dashed border-indigo-400 bg-white p-2 grid grid-cols-1 grid-rows-1 gap-1.5 shadow-inner overflow-hidden">
+            <!-- Dynamically populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Observation Table -->
+      <div class="space-y-3">
+        <p class="text-sm font-semibold text-slate-700">
+          Complete the observation table below based on your paper-folding simulation:
+        </p>
+
+        <div class="overflow-x-auto rounded-2xl border border-slate-200">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="bg-slate-800 text-white">
+                <th class="py-3.5 px-4 font-bold">Number of Folds (Term Order)</th>
+                <th class="py-3.5 px-4 font-bold">Number of Paper Sections Formed</th>
+                <th class="py-3.5 px-4 font-bold">Multiplication Pattern</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 bg-white">
+              <tr class="hover:bg-slate-50/70">
+                <td class="py-3 px-4 font-semibold text-slate-800">0 Folds (U₁ / First Term)</td>
+                <td class="py-3 px-4 font-medium text-indigo-700">1 Section</td>
+                <td class="py-3 px-4 font-mono text-slate-600">1 (Initial)</td>
+              </tr>
+              <tr class="hover:bg-slate-50/70">
+                <td class="py-3 px-4 font-semibold text-slate-800">1 Fold (U₂)</td>
+                <td class="py-3 px-4 font-medium text-indigo-700">2 Sections</td>
+                <td class="py-3 px-4 font-mono text-slate-600">1 × 2 = 2</td>
+              </tr>
+              <tr class="hover:bg-slate-50/70">
+                <td class="py-3 px-4 font-semibold text-slate-800">2 Folds (U₃)</td>
+                <td class="py-3 px-4 font-medium text-indigo-700">4 Sections</td>
+                <td class="py-3 px-4 font-mono text-slate-600">2 × 2 = 4</td>
+              </tr>
+              <tr class="bg-indigo-50/30">
+                <td class="py-3 px-4 font-bold text-slate-900">3 Folds (U₄)</td>
+                <td class="py-3 px-4">
+                  <input type="text" id="act1_u4_sec" placeholder="e.g., 8 Sections"
+                    class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" />
+                  <span id="fb_act1_u4_sec" class="hidden text-xs font-semibold mt-1 block"></span>
+                </td>
+                <td class="py-3 px-4">
+                  <input type="text" id="act1_u4_pat" placeholder="e.g., 4 x 2 = 8"
+                    class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" />
+                  <span id="fb_act1_u4_pat" class="hidden text-xs font-semibold mt-1 block"></span>
+                </td>
+              </tr>
+              <tr class="bg-indigo-50/30">
+                <td class="py-3 px-4 font-bold text-slate-900">4 Folds (U₅)</td>
+                <td class="py-3 px-4">
+                  <input type="text" id="act1_u5_sec" placeholder="e.g., 16 Sections"
+                    class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" />
+                  <span id="fb_act1_u5_sec" class="hidden text-xs font-semibold mt-1 block"></span>
+                </td>
+                <td class="py-3 px-4">
+                  <input type="text" id="act1_u5_pat" placeholder="e.g., 8 x 2 = 16"
+                    class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-indigo-500 transition" />
+                  <span id="fb_act1_u5_pat" class="hidden text-xs font-semibold mt-1 block"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. ACTIVITY 2: RATIO DETECTIVE - ANALYZING RATIOS BETWEEN CONSECUTIVE TERMS -->
+    <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 space-y-6 print-shadow-none print-break-inside">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div class="flex items-center gap-3">
+          <span class="px-3 py-1 rounded-full bg-teal-600 text-white text-xs font-extrabold tracking-wide uppercase">
+            Discovery Stage 2
+          </span>
+          <h2 class="text-lg sm:text-xl font-bold text-slate-900">
+            Activity 2: Ratio Detective — Analyzing Ratios Between Consecutive Terms
+          </h2>
+        </div>
+        <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-lg self-start sm:self-auto">
+          Max Score: 55 Points
+        </span>
+      </div>
+
+      <p class="text-sm sm:text-base text-slate-700 bg-teal-50/70 border border-teal-200 rounded-2xl p-4 leading-relaxed">
+        <i class="fa-solid fa-circle-info text-teal-600 mr-1.5"></i>
+        Calculate the ratio of the 2nd term to the 1st term (<strong>U₂ / U₁</strong>) and the 3rd term to the 2nd term (<strong>U₃ / U₂</strong>). Determine whether the quotient is constant, identify the sequence type, and find the common ratio (<strong>r</strong>)!
+      </p>
+
+      <!-- 3 Interactive Sequence Cards -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+
+        <!-- Sequence Card 1 -->
+        <div class="rounded-2xl border border-slate-200 bg-slate-50/60 p-5 flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-indigo-600 bg-indigo-100 px-2.5 py-1 rounded-lg">
+                Sequence 1
+              </span>
+              <span class="text-xs text-slate-400 font-semibold">Case #01</span>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl py-3 px-4 text-center font-mono text-lg sm:text-xl font-extrabold text-slate-900 tracking-wide shadow-xs">
+              2, 6, 18, 54
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-1">
+              <div>
+                <label class="block text-xs font-bold text-slate-600 mb-1">Ratio U₂ / U₁</label>
+                <input type="text" id="seq1_r1" placeholder="e.g., 6/2 = 3"
+                  class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 transition" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-600 mb-1">Ratio U₃ / U₂</label>
+                <input type="text" id="seq1_r2" placeholder="e.g., 18/6 = 3"
+                  class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 transition" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">Sequence Type</label>
+              <select id="seq1_type"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 transition">
+                <option value="">-- Select Type --</option>
+                <option value="geometric">Geometric Sequence</option>
+                <option value="arithmetic">Arithmetic Sequence</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">Common Ratio (r)</label>
+              <input type="text" id="seq1_ratio" placeholder="r = ?"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-teal-500 transition" />
+            </div>
+          </div>
+          <div id="fb_seq1" class="hidden text-xs font-semibold pt-2 border-t border-slate-200"></div>
+        </div>
+
+        <!-- Sequence Card 2 -->
+        <div class="rounded-2xl border border-slate-200 bg-slate-50/60 p-5 flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-indigo-600 bg-indigo-100 px-2.5 py-1 rounded-lg">
+                Sequence 2
+              </span>
+              <span class="text-xs text-slate-400 font-semibold">Case #02</span>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl py-3 px-4 text-center font-mono text-lg sm:text-xl font-extrabold text-slate-900 tracking-wide shadow-xs">
+              4, 9, 14, 19
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-1">
+              <div>
+                <label class="block text-xs font-bold text-slate-600 mb-1">Ratio U₂ / U₁</label>
+                <input type="text" id="seq2_r1" placeholder="e.g., 9/4 or 2.25"
+                  class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 transition" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-600 mb-1">Ratio U₃ / U₂</label>
+                <input type="text" id="seq2_r2" placeholder="e.g., 14/9 or 1.56"
+                  class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 transition" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">Sequence Type</label>
+              <select id="seq2_type"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 transition">
+                <option value="">-- Select Type --</option>
+                <option value="geometric">Geometric Sequence</option>
+                <option value="arithmetic">Arithmetic Sequence</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">Common Ratio (r)</label>
+              <input type="text" id="seq2_ratio" placeholder="Write 'None' or '-'"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-teal-500 transition" />
+            </div>
+          </div>
+          <div id="fb_seq2" class="hidden text-xs font-semibold pt-2 border-t border-slate-200"></div>
+        </div>
+
+        <!-- Sequence Card 3 -->
+        <div class="rounded-2xl border border-slate-200 bg-slate-50/60 p-5 flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-indigo-600 bg-indigo-100 px-2.5 py-1 rounded-lg">
+                Sequence 3
+              </span>
+              <span class="text-xs text-slate-400 font-semibold">Case #03</span>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl py-3 px-4 text-center font-mono text-lg sm:text-xl font-extrabold text-slate-900 tracking-wide shadow-xs">
+              80, 40, 20, 10
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-1">
+              <div>
+                <label class="block text-xs font-bold text-slate-600 mb-1">Ratio U₂ / U₁</label>
+                <input type="text" id="seq3_r1" placeholder="e.g., 40/80 = 1/2"
+                  class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 transition" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-600 mb-1">Ratio U₃ / U₂</label>
+                <input type="text" id="seq3_r2" placeholder="e.g., 20/40 = 1/2"
+                  class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 transition" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">Sequence Type</label>
+              <select id="seq3_type"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 transition">
+                <option value="">-- Select Type --</option>
+                <option value="geometric">Geometric Sequence</option>
+                <option value="arithmetic">Arithmetic Sequence</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">Common Ratio (r)</label>
+              <input type="text" id="seq3_ratio" placeholder="e.g., 1/2 or 0.5"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-teal-500 transition" />
+            </div>
+          </div>
+          <div id="fb_seq3" class="hidden text-xs font-semibold pt-2 border-t border-slate-200"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. ACTIVITY 3: GROUP DISCUSSION & DRAWING CONCLUSIONS -->
+    <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200/80 space-y-5 print-shadow-none print-break-inside">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+        <div class="flex items-center gap-3">
+          <span class="px-3 py-1 rounded-full bg-purple-600 text-white text-xs font-extrabold tracking-wide uppercase">
+            Discovery Stage 3
+          </span>
+          <h2 class="text-lg sm:text-xl font-bold text-slate-900">
+            Activity 3: Group Discussion &amp; Drawing Conclusions
+          </h2>
+        </div>
+        <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-lg self-start sm:self-auto">
+          Max Score: 25 Points
+        </span>
+      </div>
+
+      <div class="space-y-3">
+        <label for="conclusionInput" class="block text-sm sm:text-base font-semibold text-slate-800 leading-relaxed">
+          Based on your observations in Activities 1 and 2, explain in your own words the main difference between an <strong>Arithmetic Sequence</strong> and a <strong>Geometric Sequence</strong>, and write the formula for finding the common ratio (<strong>r</strong>)!
+        </label>
+
+        <textarea id="conclusionInput" rows="4"
+          placeholder="Write your group's conclusion here... (Hint: Mention addition/subtraction with common difference 'd' vs multiplication/division with common ratio r = U2 / U1 = Un / Un-1)"
+          class="w-full rounded-2xl border border-slate-300 p-4 text-sm sm:text-base leading-relaxed focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition"></textarea>
+        <div id="fb_act3" class="hidden text-xs sm:text-sm font-semibold rounded-xl p-3"></div>
+      </div>
+    </section>
+
+    <!-- 7. ACTION BUTTONS -->
+    <section class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 pt-2 no-print">
+      <button type="button" onclick="evaluateWorksheet()"
+        class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 active:scale-[0.99] text-white font-extrabold text-sm sm:text-base shadow-lg shadow-emerald-600/20 transition flex items-center justify-center gap-2.5 cursor-pointer">
+        <i class="fa-solid fa-circle-check text-lg"></i>
+        <span>Check Answers / Group Evaluation</span>
+      </button>
+
+      <button type="button" onclick="printWorksheet()"
+        class="px-6 py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 active:scale-[0.99] text-white font-bold text-sm sm:text-base shadow-lg shadow-indigo-600/20 transition flex items-center justify-center gap-2.5 cursor-pointer">
+        <i class="fa-solid fa-file-pdf text-lg"></i>
+        <span>Save / Print PDF</span>
+      </button>
+
+      <button type="button" onclick="openResetConfirm()"
+        class="px-5 py-3.5 rounded-2xl bg-white hover:bg-rose-50 text-rose-600 border border-rose-200 font-bold text-sm sm:text-base transition flex items-center justify-center gap-2 cursor-pointer">
+        <i class="fa-solid fa-rotate-left"></i>
+        <span>Reset Worksheet</span>
+      </button>
+    </section>
+
+    <!-- Print Footer Signature Block (Visible primarily when printed or at bottom) -->
+    <footer class="bg-white rounded-3xl p-6 border border-slate-200/80 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4 print-shadow-none print-break-inside">
+      <div>
+        <p class="font-bold text-slate-700">Ratio Detective — Geometric Sequences Student Worksheet (LKPD)</p>
+        <p>Mathematics Learning Media • Discovery Learning Approach</p>
+      </div>
+      <div id="printScoreBadge" class="hidden px-4 py-2 rounded-xl bg-slate-100 border border-slate-300 text-slate-800 font-bold text-sm">
+        Evaluated Score: <span id="footerScoreVal">0</span> / 100
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- EVALUATION SCORE SUMMARY MODAL -->
+  <div id="evaluationModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 no-print">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 transform transition-all space-y-6">
+      <div class="flex items-start justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div id="modalIconWrap" class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl">
+            <i class="fa-solid fa-trophy"></i>
+          </div>
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-wider text-slate-400">Group Evaluation Result</span>
+            <h3 id="modalGroupTitle" class="text-xl font-extrabold text-slate-900">Great Detective Work!</h3>
+          </div>
+        </div>
+        <button type="button" onclick="closeModal('evaluationModal')" class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Score Display -->
+      <div class="rounded-2xl bg-slate-50 border border-slate-200 p-5 text-center space-y-2">
+        <p class="text-xs font-bold uppercase tracking-wider text-slate-500">Total Worksheet Score</p>
+        <div class="flex items-baseline justify-center gap-1">
+          <span id="modalScoreNumber" class="text-5xl font-extrabold text-indigo-600">0</span>
+          <span class="text-lg font-bold text-slate-400">/ 100</span>
+        </div>
+        <div>
+          <span id="modalCategoryBadge" class="inline-block px-3.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wide bg-emerald-100 text-emerald-800">
+            Excellent (88–100)
+          </span>
+        </div>
+      </div>
+
+      <!-- Score Breakdown -->
+      <div class="space-y-2.5 text-sm">
+        <div class="flex items-center justify-between py-2 px-3 rounded-xl bg-slate-50">
+          <span class="font-medium text-slate-700">Activity 1: Paper Folding Table</span>
+          <span id="breakdownAct1" class="font-bold text-slate-900">0 / 20 pts</span>
+        </div>
+        <div class="flex items-center justify-between py-2 px-3 rounded-xl bg-slate-50">
+          <span class="font-medium text-slate-700">Activity 2: Ratio Detective Analysis</span>
+          <span id="breakdownAct2" class="font-bold text-slate-900">0 / 55 pts</span>
+        </div>
+        <div class="flex items-center justify-between py-2 px-3 rounded-xl bg-slate-50">
+          <span class="font-medium text-slate-700">Activity 3: Group Conclusion &amp; Formula</span>
+          <span id="breakdownAct3" class="font-bold text-slate-900">0 / 25 pts</span>
+        </div>
+      </div>
+
+      <p id="modalFeedbackText" class="text-xs sm:text-sm text-slate-600 leading-relaxed bg-indigo-50/70 border border-indigo-100 rounded-2xl p-4">
+        Feedback message appears here.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-3 pt-1">
+        <button type="button" onclick="closeModal('evaluationModal')"
+          class="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition cursor-pointer">
+          Review Highlighted Answers
+        </button>
+        <button type="button" onclick="closeModal('evaluationModal'); printWorksheet();"
+          class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition flex items-center justify-center gap-2 cursor-pointer">
+          <i class="fa-solid fa-print"></i>
+          <span>Save / Print PDF</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOM RESET CONFIRMATION MODAL (No confirm() used) -->
+  <div id="resetModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 no-print">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 space-y-5">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-xl shrink-0">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div>
+          <h3 class="text-lg font-extrabold text-slate-900">Reset Worksheet?</h3>
+          <p class="text-xs sm:text-sm text-slate-500">All typed answers and paper folds will be cleared.</p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-3 pt-2">
+        <button type="button" onclick="closeModal('resetModal')"
+          class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm transition cursor-pointer">
+          Cancel
+        </button>
+        <button type="button" onclick="confirmResetWorksheet()"
+          class="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-sm transition cursor-pointer">
+          Yes, Clear All
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // ==========================================
+    // 1. INTERACTIVE PAPER FOLDING SIMULATOR
+    // ==========================================
+    let currentFolds = 0;
+    const maxFolds = 4;
+
+    const foldConfigurations = [
+      {
+        folds: 0,
+        sections: 1,
+        colsClass: 'grid-cols-1',
+        rowsClass: 'grid-rows-1',
+        label: '1 Section (Whole Paper)',
+        term: 'Term: U₁ = 1'
+      },
+      {
+        folds: 1,
+        sections: 2,
+        colsClass: 'grid-cols-2',
+        rowsClass: 'grid-rows-1',
+        label: '2 Sections',
+        term: 'Term: U₂ = 2'
+      },
+      {
+        folds: 2,
+        sections: 4,
+        colsClass: 'grid-cols-2',
+        rowsClass: 'grid-rows-2',
+        label: '4 Sections',
+        term: 'Term: U₃ = 4'
+      },
+      {
+        folds: 3,
+        sections: 8,
+        colsClass: 'grid-cols-4',
+        rowsClass: 'grid-rows-2',
+        label: '8 Sections',
+        term: 'Term: U₄ = 8'
+      },
+      {
+        folds: 4,
+        sections: 16,
+        colsClass: 'grid-cols-4',
+        rowsClass: 'grid-rows-4',
+        label: '16 Sections',
+        term: 'Term: U₅ = 16'
+      }
+    ];
+
+    const sectionPalette = [
+      'bg-indigo-100 border-indigo-300 text-indigo-800',
+      'bg-sky-100 border-sky-300 text-sky-800',
+      'bg-teal-100 border-teal-300 text-teal-800',
+      'bg-amber-100 border-amber-300 text-amber-800'
+    ];
+
+    function renderPaperSimulator() {
+      const config = foldConfigurations[currentFolds];
+      const grid = document.getElementById('paperVisualGrid');
+      const counterBadge = document.getElementById('foldCounterBadge');
+      const stateLabel = document.getElementById('paperStateLabel');
+      const termLabel = document.getElementById('paperTermLabel');
+      const btnUnfold = document.getElementById('btnUnfold');
+      const btnFold = document.getElementById('btnFold');
+
+      // Update labels & button states
+      counterBadge.textContent = `${config.folds} ${config.folds === 1 ? 'Fold' : 'Folds'}`;
+      stateLabel.textContent = config.label;
+      termLabel.textContent = config.term;
+
+      btnUnfold.disabled = currentFolds === 0;
+      btnFold.disabled = currentFolds === maxFolds;
+
+      // Reset grid classes
+      grid.className = `w-full h-52 sm:h-60 rounded-2xl border-2 border-dashed border-indigo-400 bg-white p-2 grid ${config.colsClass} ${config.rowsClass} gap-1.5 shadow-inner overflow-hidden`;
+
+      // Build paper cells
+      grid.innerHTML = '';
+      for (let i = 1; i <= config.sections; i++) {
+        const colorStyle = sectionPalette[(i - 1) % sectionPalette.length];
+        const cell = document.createElement('div');
+        cell.className = `paper-cell rounded-lg border ${colorStyle} flex items-center justify-center font-extrabold text-xs sm:text-sm select-none`;
+        cell.textContent = config.sections === 1 ? 'Whole Paper (1)' : `#${i}`;
+        grid.appendChild(cell);
+      }
+    }
+
+    function changeFold(delta) {
+      const next = currentFolds + delta;
+      if (next >= 0 && next <= maxFolds) {
+        currentFolds = next;
+        renderPaperSimulator();
+      }
+    }
+
+    // ==========================================
+    // 2. AUTOMATED EVALUATION & SCORING ENGINE
+    // ==========================================
+    function normalizeText(str) {
+      return (str || '')
+        .toString()
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, '')
+        .replace(/×/g, 'x')
+        .replace(/\*/g, 'x');
+    }
+
+    function setInputFeedback(inputEl, isCorrect) {
+      inputEl.classList.remove('input-correct', 'input-incorrect');
+      inputEl.classList.add(isCorrect ? 'input-correct' : 'input-incorrect');
+    }
+
+    function evaluateWorksheet() {
+      let scoreAct1 = 0; // Max 20 pts (4 fields x 5 pts)
+      let scoreAct2 = 0; // Max 55 pts
+      let scoreAct3 = 0; // Max 25 pts
+
+      // --- ACTIVITY 1 EVALUATION (20 pts) ---
+      const u4SecEl = document.getElementById('act1_u4_sec');
+      const u4PatEl = document.getElementById('act1_u4_pat');
+      const u5SecEl = document.getElementById('act1_u5_sec');
+      const u5PatEl = document.getElementById('act1_u5_pat');
+
+      const u4SecVal = normalizeText(u4SecEl.value);
+      const u4SecOk = u4SecVal === '8' || u4SecVal === '8sections' || u4SecVal === '8section';
+      setInputFeedback(u4SecEl, u4SecOk);
+      if (u4SecOk) scoreAct1 += 5;
+
+      const u4PatVal = normalizeText(u4PatEl.value);
+      const u4PatOk = u4PatVal.includes('4x2') || u4PatVal.includes('2x4') || u4PatVal === '8';
+      setInputFeedback(u4PatEl, u4PatOk);
+      if (u4PatOk) scoreAct1 += 5;
+
+      const u5SecVal = normalizeText(u5SecEl.value);
+      const u5SecOk = u5SecVal === '16' || u5SecVal === '16sections' || u5SecVal === '16section';
+      setInputFeedback(u5SecEl, u5SecOk);
+      if (u5SecOk) scoreAct1 += 5;
+
+      const u5PatVal = normalizeText(u5PatEl.value);
+      const u5PatOk = u5PatVal.includes('8x2') || u5PatVal.includes('2x8') || u5PatVal === '16';
+      setInputFeedback(u5PatEl, u5PatOk);
+      if (u5PatOk) scoreAct1 += 5;
+
+      // Show inline hints for Activity 1
+      showInlineMessage('fb_act1_u4_sec', u4SecOk, u4SecOk ? '✓ Correct (8 Sections)' : '✗ Expected: 8 Sections');
+      showInlineMessage('fb_act1_u4_pat', u4PatOk, u4PatOk ? '✓ Correct (4 × 2 = 8)' : '✗ Expected: 4 × 2 = 8');
+      showInlineMessage('fb_act1_u5_sec', u5SecOk, u5SecOk ? '✓ Correct (16 Sections)' : '✗ Expected: 16 Sections');
+      showInlineMessage('fb_act1_u5_pat', u5PatOk, u5PatOk ? '✓ Correct (8 × 2 = 16)' : '✗ Expected: 8 × 2 = 16');
+
+      // --- ACTIVITY 2 EVALUATION (55 pts) ---
+      // Sequence 1: 2, 6, 18, 54 (19 pts)
+      const s1R1El = document.getElementById('seq1_r1');
+      const s1R2El = document.getElementById('seq1_r2');
+      const s1TypeEl = document.getElementById('seq1_type');
+      const s1RatioEl = document.getElementById('seq1_ratio');
+
+      const s1R1Val = normalizeText(s1R1El.value);
+      const s1R1Ok = s1R1Val === '3' || s1R1Val === '6/2' || s1R1Val.endsWith('=3');
+      setInputFeedback(s1R1El, s1R1Ok);
+      if (s1R1Ok) scoreAct2 += 4;
+
+      const s1R2Val = normalizeText(s1R2El.value);
+      const s1R2Ok = s1R2Val === '3' || s1R2Val === '18/6' || s1R2Val.endsWith('=3');
+      setInputFeedback(s1R2El, s1R2Ok);
+      if (s1R2Ok) scoreAct2 += 4;
+
+      const s1TypeOk = s1TypeEl.value === 'geometric';
+      setInputFeedback(s1TypeEl, s1TypeOk);
+      if (s1TypeOk) scoreAct2 += 6;
+
+      const s1RatioVal = normalizeText(s1RatioEl.value);
+      const s1RatioOk = s1RatioVal === '3' || s1RatioVal === 'r=3';
+      setInputFeedback(s1RatioEl, s1RatioOk);
+      if (s1RatioOk) scoreAct2 += 5;
+
+      showInlineMessage(
+        'fb_seq1',
+        s1R1Ok && s1R2Ok && s1TypeOk && s1RatioOk,
+        s1R1Ok && s1R2Ok && s1TypeOk && s1RatioOk
+          ? '✓ Case #01 Solved! Constant ratio r = 3 (Geometric).'
+          : 'Hint: 6/2 = 3 and 18/6 = 3 → Geometric Sequence with r = 3.'
+      );
+
+      // Sequence 2: 4, 9, 14, 19 (17 pts)
+      const s2R1El = document.getElementById('seq2_r1');
+      const s2R2El = document.getElementById('seq2_r2');
+      const s2TypeEl = document.getElementById('seq2_type');
+      const s2RatioEl = document.getElementById('seq2_ratio');
+
+      const s2R1Val = normalizeText(s2R1El.value);
+      const s2R1Ok = s2R1Val.includes('9/4') || s2R1Val.includes('2.25') || s2R1Val.includes('2,25');
+      setInputFeedback(s2R1El, s2R1Ok);
+      if (s2R1Ok) scoreAct2 += 3;
+
+      const s2R2Val = normalizeText(s2R2El.value);
+      const s2R2Ok = s2R2Val.includes('14/9') || s2R2Val.includes('1.55') || s2R2Val.includes('1.56') || s2R2Val.includes('1,55') || s2R2Val.includes('1,56');
+      setInputFeedback(s2R2El, s2R2Ok);
+      if (s2R2Ok) scoreAct2 += 3;
+
+      const s2TypeOk = s2TypeEl.value === 'arithmetic';
+      setInputFeedback(s2TypeEl, s2TypeOk);
+      if (s2TypeOk) scoreAct2 += 6;
+
+      const s2RatioVal = normalizeText(s2RatioEl.value);
+      const validNoneTokens = ['none', '-', 'n/a', 'na', 'no', 'notapplicable', 'tidakada', '0'];
+      const s2RatioOk = validNoneTokens.includes(s2RatioVal);
+      setInputFeedback(s2RatioEl, s2RatioOk);
+      if (s2RatioOk) scoreAct2 += 5;
+
+      showInlineMessage(
+        'fb_seq2',
+        s2R1Ok && s2R2Ok && s2TypeOk && s2RatioOk,
+        s2R1Ok && s2R2Ok && s2TypeOk && s2RatioOk
+          ? '✓ Case #02 Solved! Quotient is not constant (+5 each step → Arithmetic).'
+          : 'Hint: 9/4 (2.25) ≠ 14/9 (1.56). It adds +5 each time → Arithmetic Sequence (r: None).'
+      );
+
+      // Sequence 3: 80, 40, 20, 10 (19 pts)
+      const s3R1El = document.getElementById('seq3_r1');
+      const s3R2El = document.getElementById('seq3_r2');
+      const s3TypeEl = document.getElementById('seq3_type');
+      const s3RatioEl = document.getElementById('seq3_ratio');
+
+      const halfTokens = ['1/2', '0.5', '0,5', '.5', '40/80', '20/40'];
+      const s3R1Val = normalizeText(s3R1El.value);
+      const s3R1Ok = halfTokens.some(tok => s3R1Val === tok || s3R1Val.endsWith('=' + tok));
+      setInputFeedback(s3R1El, s3R1Ok);
+      if (s3R1Ok) scoreAct2 += 4;
+
+      const s3R2Val = normalizeText(s3R2El.value);
+      const s3R2Ok = halfTokens.some(tok => s3R2Val === tok || s3R2Val.endsWith('=' + tok));
+      setInputFeedback(s3R2El, s3R2Ok);
+      if (s3R2Ok) scoreAct2 += 4;
+
+      const s3TypeOk = s3TypeEl.value === 'geometric';
+      setInputFeedback(s3TypeEl, s3TypeOk);
+      if (s3TypeOk) scoreAct2 += 6;
+
+      const s3RatioVal = normalizeText(s3RatioEl.value);
+      const s3RatioOk = ['1/2', '0.5', '0,5', '.5', 'r=1/2', 'r=0.5'].includes(s3RatioVal);
+      setInputFeedback(s3RatioEl, s3RatioOk);
+      if (s3RatioOk) scoreAct2 += 5;
+
+      showInlineMessage(
+        'fb_seq3',
+        s3R1Ok && s3R2Ok && s3TypeOk && s3RatioOk,
+        s3R1Ok && s3R2Ok && s3TypeOk && s3RatioOk
+          ? '✓ Case #03 Solved! Constant fractional ratio r = 1/2 (Geometric).'
+          : 'Hint: 40/80 = 1/2 and 20/40 = 1/2 → Geometric Sequence with r = 1/2 (or 0.5).'
+      );
+
+      // --- ACTIVITY 3 EVALUATION (25 pts) ---
+      const conclusionEl = document.getElementById('conclusionInput');
+      const conclusionText = (conclusionEl.value || '').trim().toLowerCase();
+      const fbAct3 = document.getElementById('fb_act3');
+
+      if (conclusionText.length > 0) {
+        let pts = 10; // Base effort points for writing a conclusion
+        const hasArithConcept = /add|subtract|difference|plus|minus|\+|-/.test(conclusionText);
+        const hasGeomConcept = /multipl|divid|ratio|quotient|constant/.test(conclusionText);
+        const hasFormula = /u2\s*\/\s*u1|un\s*\/\s*un-1|u_2\s*\/\s*u_1|u_n\s*\/\s*u_\{n-1\}|ratio\s*=/.test(conclusionText);
+
+        if (hasArithConcept) pts += 5;
+        if (hasGeomConcept) pts += 5;
+        if (hasFormula) pts += 5;
+
+        scoreAct3 = Math.min(25, pts);
+        setInputFeedback(conclusionEl, scoreAct3 >= 20);
+        fbAct3.classList.remove('hidden', 'bg-rose-50', 'text-rose-700', 'bg-emerald-50', 'text-emerald-800');
+        fbAct3.classList.add('bg-emerald-50', 'text-emerald-800');
+        fbAct3.innerHTML = `<i class="fa-solid fa-check-circle mr-1"></i> Recorded (${scoreAct3}/25 pts). Key takeaway: <strong>Arithmetic sequences</strong> add/subtract a constant difference, while <strong>Geometric sequences</strong> multiply/divide by a constant ratio <strong>r = U₂ / U₁ = Uₙ / Uₙ₋₁</strong>.`;
+      } else {
+        scoreAct3 = 0;
+        setInputFeedback(conclusionEl, false);
+        fbAct3.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-800');
+        fbAct3.classList.add('bg-rose-50', 'text-rose-700');
+        fbAct3.innerHTML = `<i class="fa-solid fa-circle-exclamation mr-1"></i> Please write your group's conclusion and common ratio formula before evaluating.`;
+      }
+
+      // --- TOTAL SCORE & MODAL DISPLAY ---
+      const totalScore = scoreAct1 + scoreAct2 + scoreAct3;
+      const groupName = (document.getElementById('groupName').value || '').trim();
+
+      document.getElementById('modalGroupTitle').textContent = groupName
+        ? `Evaluation: ${groupName}`
+        : 'Group Evaluation Summary';
+      document.getElementById('modalScoreNumber').textContent = totalScore;
+      document.getElementById('breakdownAct1').textContent = `${scoreAct1} / 20 pts`;
+      document.getElementById('breakdownAct2').textContent = `${scoreAct2} / 55 pts`;
+      document.getElementById('breakdownAct3').textContent = `${scoreAct3} / 25 pts`;
+
+      // Update print footer score badge
+      document.getElementById('footerScoreVal').textContent = totalScore;
+      document.getElementById('printScoreBadge').classList.remove('hidden');
+
+      // Determine Category & Feedback
+      const catBadge = document.getElementById('modalCategoryBadge');
+      const feedbackText = document.getElementById('modalFeedbackText');
+      const iconWrap = document.getElementById('modalIconWrap');
+
+      catBadge.className = 'inline-block px-3.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wide';
+
+      if (totalScore >= 88) {
+        catBadge.classList.add('bg-emerald-100', 'text-emerald-800');
+        catBadge.textContent = 'Excellent (88–100)';
+        iconWrap.className = 'w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl';
+        feedbackText.textContent = 'Outstanding job, Detectives! Your group accurately identified constant multipliers, distinguished geometric from arithmetic sequences, and formulated the common ratio rule.';
+      } else if (totalScore >= 74) {
+        catBadge.classList.add('bg-blue-100', 'text-blue-800');
+        catBadge.textContent = 'Good (74–87)';
+        iconWrap.className = 'w-12 h-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl';
+        feedbackText.textContent = 'Well done! Your group understands the core concept of geometric sequences. Review any highlighted red boxes to polish your calculations.';
+      } else if (totalScore >= 60) {
+        catBadge.classList.add('bg-amber-100', 'text-amber-800');
+        catBadge.textContent = 'Fair (60–73)';
+        iconWrap.className = 'w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl';
+        feedbackText.textContent = 'Good effort! Pay closer attention to dividing consecutive terms (U2 / U1) rather than subtracting them, and check the hints under each sequence.';
+      } else {
+        catBadge.classList.add('bg-rose-100', 'text-rose-800');
+        catBadge.textContent = 'Needs Guidance (< 60)';
+        iconWrap.className = 'w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-2xl';
+        feedbackText.textContent = 'Keep investigating! Try the Paper Folding Simulator again and review the hints highlighted in red on your worksheet with your teacher or teammates.';
+      }
+
+      openModal('evaluationModal');
+    }
+
+    function showInlineMessage(elementId, isCorrect, text) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      el.classList.remove('hidden', 'text-emerald-700', 'text-rose-600');
+      el.classList.add(isCorrect ? 'text-emerald-700' : 'text-rose-600');
+      el.textContent = text;
+    }
+
+    // ==========================================
+    // 3. MODAL, PRINT & RESET UTILITIES
+    // ==========================================
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function printWorksheet() {
+      window.print();
+    }
+
+    function openResetConfirm() {
+      openModal('resetModal');
+    }
+
+    function confirmResetWorksheet() {
+      // Reset fold simulator
+      currentFolds = 0;
+      renderPaperSimulator();
+
+      // Clear all inputs, selects, textareas
+      document.querySelectorAll('input, select, textarea').forEach(el => {
+        el.value = '';
+        el.classList.remove('input-correct', 'input-incorrect');
+      });
+
+      // Hide feedback labels
+      const feedbackIds = [
+        'fb_act1_u4_sec', 'fb_act1_u4_pat', 'fb_act1_u5_sec', 'fb_act1_u5_pat',
+        'fb_seq1', 'fb_seq2', 'fb_seq3', 'fb_act3', 'printScoreBadge'
+      ];
+      feedbackIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+      });
+
+      closeModal('resetModal');
+    }
+
+    // Initialize simulator on load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderPaperSimulator();
+    });
+  </script>
+</body>
+</html>
